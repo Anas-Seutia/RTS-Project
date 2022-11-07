@@ -1,3 +1,5 @@
+local CollectionService = game:GetService("CollectionService")
+
 local models = game.ServerStorage.unitModels
 
 local unit = {
@@ -23,7 +25,12 @@ local unit = {
 
 function unit.Spawn(name, player)
 	if unit[name] then
-		local unit = unit[name].Squad:Clone()
+		local unit:Model = unit[name].Squad:Clone()
+		CollectionService:AddTag(unit, player.name .. "'s Units")
+		for _, value in pairs(unit:GetChildren()) do
+			CollectionService:AddTag(value, player.name .. "'s Unit")
+			CollectionService:AddTag(value.HumanoidRootPart, player.name .. "'s Unit Rootpart")
+		end
 		unit.Name = name
 		unit.Parent = workspace["Game Units"][player.name .. "'s Units"]
 	end
