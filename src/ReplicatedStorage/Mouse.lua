@@ -1,29 +1,37 @@
 local UserInputService = game:GetService("UserInputService")
 
-local MAX_DISTANCE : number = 500 
+local MAX_DISTANCE:number = 500 
 
 local Camera = workspace.CurrentCamera
 
 local Mouse = {}
 
-function Mouse.Origin()
+function Mouse.Origin():CFrame --mouse origin/camera origin
 	return Camera.CFrame
 end
 
-function Mouse.ViewSizeX()
-	return Camera.ViewportSize.X
+function Mouse.ViewSize():Vector2 --screen x,y size
+	return Camera.ViewportSize
 end
 
-function Mouse.ViewSizeY()
-	return Camera.ViewportSize.Y
+function Mouse.ViewSizeX():number --screen x size
+	return Mouse.ViewSize().X
 end
 
-function Mouse.X()
-	return UserInputService:GetMouseLocation().X
+function Mouse.ViewSizeY():number --screen y size
+	return Mouse.ViewSize().Y
 end
 
-function Mouse.Y()
-	return UserInputService:GetMouseLocation().Y
+function Mouse.screenLocation():Vector2 --mouse on screen location
+	return UserInputService:GetMouseLocation()
+end
+
+function Mouse.X():number --mouse x screen location
+	return Mouse.screenLocation().X
+end
+
+function Mouse.Y():number --mouse y screen location
+	return Mouse.screenLocation().Y
 end
 
 function Mouse.UnitRay()
@@ -36,7 +44,7 @@ function Mouse.GetRaycast(Params)
 	return result, ray
 end
 
-function Mouse.Hit(Params)
+function Mouse.Hit(Params) --gets hit
 	local result, ray = Mouse.GetRaycast()
 	if result then
 		return result
@@ -45,7 +53,7 @@ function Mouse.Hit(Params)
 	end
 end
 
-function Mouse.Target(Params)
+function Mouse.Target(Params) --gets hit object
 	local result, ray = Mouse.GetRaycast()
 	return result and result.Instance
 end
