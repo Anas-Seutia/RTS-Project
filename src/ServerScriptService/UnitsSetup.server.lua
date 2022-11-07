@@ -5,10 +5,10 @@ players.PlayerAdded:Connect(function(player)
 	playerunitFolder.Parent = workspace["Game Units"]
 	playerunitFolder.Name = player.Name .. "'s Units"
 	
-	require(game.ServerScriptService.Units).Spawn("Medics", player)
-	wait(1)
-	require(game.ServerScriptService.Units).Spawn("Engineers", player)
-	wait(1)
-	require(game.ServerScriptService.Units).Spawn("Soldiers", player)
+	require(game.ServerScriptService.Units).Spawn("Medics", player) --spawn medic
+	task.wait(1)
+	require(game.ServerScriptService.Units).Spawn("Engineers", player) --spawn engineers
+	task.wait(1)
+	require(game.ServerScriptService.Units).Spawn("Soldiers", player) --spawn soldiers
 end)
 
