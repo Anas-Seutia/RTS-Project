@@ -35,7 +35,7 @@ function Mouse.Y():number --mouse y screen location
 end
 
 function Mouse.UnitRay()
-	return Camera:ViewportPointToRay(Mouse.X(), Mouse.Y())
+	return Camera:ViewportPointToRay(Mouse.X(), Mouse.Y()) --get unit ray
 end
 
 function Mouse.GetRaycast(Params)
